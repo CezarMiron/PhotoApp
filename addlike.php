@@ -19,6 +19,18 @@
     	$query = mysql_query(
     			"UPDATE commlike SET Likes = 0 WHERE (UserId = '$UserId') AND (PhotoId = '$PhotoId') "
     		);
+    	$query1 = mysql_query(
+    			"SELECT * FROM photo WHERE PhotoId = '$PhotoId' "
+    		);
+    	while($row = mysql_fetch_array($query1))
+    		$TotalLikes = $row['TotalLikes'];
+
+    	$TotalLikes = $TotalLikes - 1;
+
+    	$query2 = mysql_query(
+    			"UPDATE photo SET TotalLikes = '$TotalLikes' WHERE PhotoId = '$PhotoId' "
+    		);
+
     }
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,6 +49,18 @@
     		);
     		//echo mysql_affected_rows();
     	}
+
+    	    	$query1 = mysql_query(
+    			"SELECT * FROM photo WHERE PhotoId = '$PhotoId' "
+    		);
+    	while($row = mysql_fetch_array($query1))
+    		$TotalLikes = $row['TotalLikes'];
+
+    	$TotalLikes = $TotalLikes + 1;
+
+    	$query2 = mysql_query(
+    			"UPDATE photo SET TotalLikes = '$TotalLikes' WHERE PhotoId = '$PhotoId' "
+    		);
     }
 
 

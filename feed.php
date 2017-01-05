@@ -21,6 +21,7 @@ if(isset($_SESSION['user']) ) {
 		WHERE P.UserId NOT IN (
     		SELECT UserId FROM users
     		WHERE UserId = '$UserId')
+    	ORDER BY P.TotalLikes DESC
 
 	  ");
 

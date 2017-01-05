@@ -50,7 +50,7 @@ include_once('header.php');
   
        }
 
-    $query = mysql_query(" SELECT * FROM photo WHERE UserId = '$UserId'  ");
+    $query = mysql_query(" SELECT * FROM photo WHERE UserId = '$UserId' ORDER BY TotalLikes DESC ");
 
     $images = array();
     $info = array();
@@ -78,6 +78,7 @@ include_once('header.php');
         FROM commlike CL
         INNER JOIN users U ON CL.UserId = U.UserId
         WHERE CL.PhotoId = '$PhotoId'
+
       ");
 
       while ($row = mysql_fetch_assoc($query1)) { //creez vectorul de detine informatii despre fiecare imagine in parte
